@@ -6,14 +6,9 @@ namespace GrpcBillingService.Services
 {
     public class BillingService : Billing.Billing.BillingBase
     {
-        private readonly ILogger<BillingService> logger;
         private readonly IBillingDataService service;
 
-        public BillingService(ILogger<BillingService> logger, IBillingDataService service)
-        {
-            this.logger = logger;
-            this.service = service;
-        }
+        public BillingService(IBillingDataService service) => this.service = service;
 
         public override async Task ListUsers(None request,
             IServerStreamWriter<UserProfile> responseStream,

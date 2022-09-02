@@ -97,11 +97,11 @@ namespace GrpcBillingService.Services
                 int coinsCounter = 0;
                 foreach (var coin in coins)
                 {
-                    if (coinsCounter++ >= request.Amount)
-                        break;
-
                     if (coin.CurrentUser.Name == request.SrcUser)
                     {
+                        if (coinsCounter++ >= request.Amount)
+                            break;
+
                         var user = service.GetUser(request.DstUser);
                         service.UpdateCoin(coin.Id, user);
                     }
